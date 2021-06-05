@@ -1,9 +1,20 @@
 "---------------------------------------------------------------------------------------------------
+
+" sy region javaFunctiondef   start=''
+
 sy match  javaOperator      '[+\-\~!\*/%<>=&\^|?:]'
 sy match  javaDelimiter     '[()\.\[\],;{}]'
 sy match  javaIdentifier    '\v<%(\h|\$)%(\w|\$)*>'
+sy match  javaFunctionCall  '\v\.<%(\h|\$)%(\w|\$)*>\ze\_s*\(\_.{-}\)'
+sy match  javaFunctionCall  '\v::<%(\h|\$)%(\w|\$)*>\ze\_s*\_.{-}'
 sy match  javaFunction      '\v<%(\h|\$)%(\w|\$)*>\ze\_s*\(\_.{-}\)'
+
+" sy region bracketGroup start='private\_.*{' end='}'
+" sy region parenGroup        start='(' end=')' containedin=javaFunction
+" sy match  javaArgument      '\v<\$*[a-z](\w|\$)*>' containedin=parenGroup
 sy match  javaType          '\v<\$*\u%(\w|\$)*>'
+sy match  javaTypeIn        '\v<\$*\u%(\w|\$)*>' containedin=javaTypedef contained
+sy region javaTypedef       start='<' end='>' containedin=javaTypedef  contains=javaOperatorSpecial matchgroup=javaOperator oneline
 sy match  javaConstant      '\v<%(\u|[_\$])%(\u|\d|[_\$])*>'
 "---------------------------------------------------------------------------------------------------
 sy match  javaComment       '//.*'                  contains=@javaTodos
@@ -28,8 +39,6 @@ sy match  javaHexFloat      '\v\c<0X\x%(\x|_*\x)*\.%(\x%(\x|_*\x)*)=%(P[+-]=\d%(
 sy match  javaHexFloat      '\v\c<0X\.\x%(\x|_*\x)*%(P[+-]=\d%(\d|_*\d)*)=[FD]='
 "---------------------------------------------------------------------------------------------------
 sy match  javaPreProc       '@\h\w*'
-sy match  javaInclude       '\v<import%(\_s+static)=>'
-\   skipwhite skipempty nextgroup=javaPackagePath
-sy match  javaPackagePath   '\v<%(%(\w|\$)+\_s*\.\_s*)*%(\w|\$)+>'
-\   contained contains=javaIdentifier,javaDelimiter
+sy match  javaInclude       '\v<import%(\_s+static)=>' skipwhite skipempty nextgroup=javaPackagePath
+sy match  javaPackagePath   '\v<%(%(\w|\$)+\_s*\.\_s*)*%(\w|\$)+>' contained contains=javaIdentifier,javaDelimiter
 "---------------------------------------------------------------------------------------------------

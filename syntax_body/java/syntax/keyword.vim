@@ -17,7 +17,7 @@ sy keyword javaException        try catch finally
 "-----------------------------------------------------------------------------------------
 sy keyword javaPreProc          package
 "-----------------------------------------------------------------------------------------
-sy keyword javaType             void
+sy keyword javaStructure        void
 sy keyword javaType             char
 sy keyword javaType             byte short int long
 sy keyword javaType             boolean

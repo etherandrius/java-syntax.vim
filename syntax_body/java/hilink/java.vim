@@ -9,7 +9,9 @@ hi def link javaBoolean         Boolean
 hi def link javaFloat           Float
 "-------------------------------------------------
 hi def link javaIdentifier      Identifier
+hi def link javaArgument        PreProc
 hi def link javaFunction        Function
+hi def link javaFunctionCall    Function
 "-------------------------------------------------
 hi def link javaStatement       Statement
 hi def link javaConditional     Conditional
@@ -25,6 +27,7 @@ hi def link javaDefine          Define
 hi def link javaMacro           Macro
 hi def link javaPreCondit       PreCondit
 "-------------------------------------------------
+hi def link javaTypeIn          Type
 hi def link javaType            Type
 hi def link javaStorageClass    StorageClass
 hi def link javaStructure       Structure
